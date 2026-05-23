@@ -270,4 +270,25 @@
             div.innerHTML = `<span class="font-black text-cyan-400 text-[10px] md:text-xs tracking-tighter uppercase mr-2">${user}:</span> <span class="text-gray-300 font-normal text-xs md:text-sm">${msg}</span>`;
             
             chatBox.appendChild(div);
-            if(chatBox.children.length > 8) chatBox.removeChild(
+            if(chatBox.children.length > 8) chatBox.removeChild(chatBox.firstChild);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            setTimeout(addMessage, Math.random() * 3000 + 1500);
+        }
+        addMessage();
+
+        // Cam Rotation
+        const camLinks = [
+            "https://drive.google.com/file/d/1ukOYy9zg6iNI1TdMOV98l5wbuTnEvU9D/preview",
+            "https://drive.google.com/file/d/13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G/preview",
+            "https://drive.google.com/file/d/1t3hTzBZVNap-QgDYVPrho_0cch46Vj2k/preview",
+            "https://drive.google.com/file/d/1DljnoDdClNr7db7M_okO1j8ccuDI-hBO/preview"
+        ];
+        let idx = 0;
+        setInterval(() => {
+            idx = (idx + 1) % camLinks.length;
+            document.getElementById('liveCam').src = camLinks[idx];
+        }, 25000);
+    </script>
+</body>
+</html>
