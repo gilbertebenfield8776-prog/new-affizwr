@@ -3,343 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Lisa Christiansen | Private Consultation</title>
+    <title>Dr. Lisa Christiansen | Exclusive VIP Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;800&display=swap');
-        
-        :root {
-            --gold: #D4AF37;
-            --gold-light: #F3E5AB;
-            --dark-blue: #0A0F1C;
-            --panel: rgba(15, 23, 42, 0.7);
-        }
-
         body { 
-            background: var(--dark-blue); 
-            color: #fff; 
-            font-family: 'Poppins', sans-serif; 
-            overflow-x: hidden; 
-            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0A0F1C 70%);
+            background-color: #030303; 
+            color: #ffffff; 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
-        
-        h1, h2, .serif-text { font-family: 'Playfair Display', serif; }
-        
-        .glass-panel { 
-            background: var(--panel); 
-            backdrop-filter: blur(20px); 
-            border: 1px solid rgba(212, 175, 55, 0.2); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        h1, h2, button, .font-bold { font-family: 'Montserrat', sans-serif; }
+
+        /* Neon Background Blobs */
+        .neon-blob {
+            position: fixed; width: 400px; height: 400px; 
+            background: radial-gradient(circle, rgba(0,242,255,0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1; filter: blur(60px);
         }
 
-        .gold-text {
-            background: linear-gradient(to right, #D4AF37, #FFF, #D4AF37);
-            -webkit-background-clip: text;
-            color: transparent;
+        .glass { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(25px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 24px;
         }
 
-        .btn-gold { 
-            background: linear-gradient(135deg, #D4AF37 0%, #AA801E 100%); 
-            color: #000; 
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3); 
-            transition: all 0.3s ease;
-        }
-        .btn-gold:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6); }
-
-        /* 8-Segment Professional Wheel */
-        .wheel-container { position: relative; width: 320px; height: 320px; margin: 0 auto; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.2)); }
+        /* Improved High-Voltage Wheel */
+        .wheel-container { position: relative; width: 340px; height: 340px; margin: 0 auto; }
         .wheel { 
             width: 100%; height: 100%; border-radius: 50%; 
-            border: 8px solid #D4AF37; 
+            border: 10px solid #00f2ff; 
+            box-shadow: 0 0 40px #00f2ff, inset 0 0 20px #00f2ff;
             position: relative; overflow: hidden;
-            background: conic-gradient(
-                #111827 0deg 45deg, #D4AF37 45deg 90deg, 
-                #111827 90deg 135deg, #D4AF37 135deg 180deg, 
-                #111827 180deg 225deg, #D4AF37 225deg 270deg, 
-                #111827 270deg 315deg, #D4AF37 315deg 360deg
-            );
-            transition: transform 5.5s cubic-bezier(0.15, 0.85, 0.1, 1); 
-            transform: rotate(0deg); 
+            background: #000;
+            transition: transform 5s cubic-bezier(0.15, 0.85, 0.1, 1); 
         }
         
         .wheel-segment {
-            position: absolute; top: 50%; left: 50%; width: 150px; height: 40px;
-            margin-top: -20px; transform-origin: 0% 50%; text-align: right;
-            padding-right: 20px; font-weight: 800; font-size: 11px;
-            text-transform: uppercase; display: flex; align-items: center; justify-content: flex-end;
-            letter-spacing: 0.5px;
+            position: absolute; top: 50%; left: 50%; width: 50%; height: 2px;
+            transform-origin: 0% 50%; background: rgba(0, 242, 255, 0.4);
         }
-        
-        /* Alternating text colors for contrast */
-        .txt-gold { color: #D4AF37; text-shadow: 1px 1px 3px #000; }
-        .txt-dark { color: #111827; text-shadow: 1px 1px 2px rgba(255,255,255,0.3); }
 
-        .seg-1 { transform: rotate(22.5deg); }   /* FREE ACCESS */
-        .seg-2 { transform: rotate(67.5deg); }   /* SECRET GALLERY */
-        .seg-3 { transform: rotate(112.5deg); }  /* TRY AGAIN */
-        .seg-4 { transform: rotate(157.5deg); }  /* 1-ON-1 CALL */
-        .seg-5 { transform: rotate(202.5deg); font-size: 13px; font-weight: 900;}  /* LIFETIME VIP */
-        .seg-6 { transform: rotate(247.5deg); }  /* JACKPOT 🔞 */
-        .seg-7 { transform: rotate(292.5deg); }  /* PERSONAL CHAT */
-        .seg-8 { transform: rotate(337.5deg); }  /* GOLD PASS */
+        .segment-text {
+            position: absolute; top: 50%; left: 50%; width: 140px;
+            transform-origin: 0% 50%; text-align: right;
+            font-weight: 900; font-size: 14px; color: #fff;
+            text-transform: uppercase; letter-spacing: 1px;
+            pointer-events: none; text-shadow: 0 0 10px #00f2ff;
+        }
+
+        /* 10 Segments Calculation */
+        .seg-1 { transform: rotate(18deg) translate(20px); }
+        .seg-2 { transform: rotate(54deg) translate(20px); }
+        .seg-3 { transform: rotate(90deg) translate(20px); }
+        .seg-4 { transform: rotate(126deg) translate(20px); }
+        .seg-5 { transform: rotate(162deg) translate(20px); }
+        .seg-6 { transform: rotate(198deg) translate(20px); }
+        .seg-7 { transform: rotate(234deg) translate(20px); }
+        .seg-8 { transform: rotate(270deg) translate(20px); color: #00f2ff; font-size: 16px; } /* WINNER */
+        .seg-9 { transform: rotate(306deg) translate(20px); }
+        .seg-10 { transform: rotate(342deg) translate(20px); }
 
         .wheel-center { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            width: 70px; height: 70px; background: #0A0F1C; border: 3px solid #D4AF37; 
-            border-radius: 50%; z-index: 10; display: flex; flex-direction: column; align-items: center; 
-            justify-content: center; font-weight: 900; color: #D4AF37; 
-            box-shadow: inset 0 0 15px rgba(212,175,55,0.4), 0 0 20px rgba(0,0,0,0.8); cursor: pointer;
-        }
-        .wheel-pointer { 
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%); 
-            width: 0; height: 0; border-left: 20px solid transparent; 
-            border-right: 20px solid transparent; border-top: 40px solid #FFF; 
-            z-index: 20; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); 
+            width: 70px; height: 70px; background: #00f2ff; border: 4px solid #fff; 
+            border-radius: 50%; z-index: 10; display: flex; align-items: center; 
+            justify-content: center; font-weight: 900; color: #000; 
+            box-shadow: 0 0 30px #00f2ff; cursor: pointer;
         }
 
-        /* Fake Incoming Call Animation */
-        @keyframes ring { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
-        .animate-ring { animation: ring 1.5s infinite; }
-        
-        .chat-box::-webkit-scrollbar { width: 3px; }
-        .chat-box::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+        .wheel-pointer { 
+            position: absolute; top: -20px; left: 50%; transform: translateX(-50%); 
+            width: 0; height: 0; border-left: 20px solid transparent; 
+            border-right: 20px solid transparent; border-top: 40px solid #fff; 
+            z-index: 20; filter: drop-shadow(0 0 15px #00f2ff);
+        }
+
+        /* Buttons */
+        .btn-cyan { background: #00f2ff; color: #000; font-weight: 900; transition: 0.3s; }
+        .btn-cyan:hover { transform: translateY(-3px); box-shadow: 0 0 30px #00f2ff; }
+
+        @keyframes pulse-cyan { 0%, 100% { box-shadow: 0 0 10px #00f2ff; } 50% { box-shadow: 0 0 30px #00f2ff; } }
+        .cyan-pulse { animation: pulse-cyan 1.5s infinite; }
     </style>
 </head>
-<body class="pb-24">
+<body>
 
-    <nav class="glass-panel sticky top-0 z-40 border-b-0 border-t-0 border-l-0 border-r-0 border-b border-[#D4AF37]/30 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <div class="relative">
-                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="w-10 h-10 rounded-full border-2 border-[#D4AF37] object-cover">
-                <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#0A0F1C] rounded-full"></span>
-            </div>
+    <div class="neon-blob top-0 -left-20"></div>
+    <div class="neon-blob bottom-0 -right-20" style="background: radial-gradient(circle, rgba(112,0,255,0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+
+    <header class="p-6 border-b border-white/10 flex justify-between items-center glass sticky top-0 z-50">
+        <div class="flex items-center gap-4">
+            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="w-12 h-12 rounded-full border-2 border-cyan-400 object-cover shadow-lg shadow-cyan-500/30">
             <div>
-                <h2 class="serif-text font-bold text-lg leading-tight text-white">Dr. Lisa Christiansen</h2>
-                <p class="text-[10px] text-[#D4AF37] tracking-widest uppercase">Private Lounge & Consultation</p>
+                <h1 class="text-xl font-black italic">DR. LISA <span class="text-cyan-400">CHRISTIANSEN</span></h1>
+                <p class="text-[10px] text-gray-500 tracking-widest uppercase">Verified Private Portal</p>
             </div>
         </div>
-        <div class="hidden md:flex gap-4">
-            <span class="bg-red-600/20 text-red-400 px-3 py-1 rounded-full text-xs font-bold border border-red-500/50 flex items-center gap-2">
-                <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> LIVE
-            </span>
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
+            <span class="text-xs font-bold text-red-500 uppercase tracking-tighter">Live Stream</span>
         </div>
-    </nav>
+    </header>
 
-    <div class="max-w-6xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="max-w-7xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         <div class="lg:col-span-2 space-y-6">
-            
-            <div class="glass-panel p-6 rounded-2xl text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 border border-[#D4AF37]/30">
-                <div>
-                    <h1 class="text-2xl font-bold serif-text mb-1">Welcome to my private session.</h1>
-                    <p class="text-sm text-gray-400">Please verify your access to join the 1-on-1 consultation or view the live stream.</p>
-                </div>
-                <button onclick="openWheelModal()" class="btn-gold px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider whitespace-nowrap">
-                    Verify Access
-                </button>
-            </div>
-
-            <div class="relative rounded-2xl overflow-hidden glass-panel border border-[#D4AF37]/20 aspect-video shadow-[0_0_30px_rgba(212,175,55,0.15)] group" onclick="openWheelModal()">
-                <iframe id="livePlayer" src="https://drive.google.com/file/d/1ukOYy9zg6iNI1TdMOV98l5wbuTnEvU9D/preview" class="w-full h-full pointer-events-none opacity-80 mix-blend-screen" frameborder="0"></iframe>
+            <div class="relative rounded-[32px] overflow-hidden glass border-white/10 aspect-video shadow-2xl group cursor-pointer" onclick="openWheel()">
+                <iframe id="liveCam" src="https://drive.google.com/file/d/1ukOYy9zg6iNI1TdMOV98l5wbuTnEvU9D/preview" class="w-full h-full pointer-events-none opacity-90 brightness-110" frameborder="0"></iframe>
                 
-                <div class="absolute inset-0 bg-[#0A0F1C]/40 backdrop-blur-[2px] transition-all z-30 group-hover:bg-[#0A0F1C]/20"></div>
-
-                <div class="absolute inset-0 flex flex-col items-center justify-center z-40">
-                    <div class="w-20 h-20 rounded-full bg-[#D4AF37]/20 border-2 border-[#D4AF37] flex items-center justify-center backdrop-blur-md mb-3 transition transform group-hover:scale-110">
-                        <svg class="w-8 h-8 text-[#D4AF37] ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center z-20">
+                    <div class="w-24 h-24 bg-cyan-400/20 border-2 border-cyan-400 rounded-full flex items-center justify-center backdrop-blur-md mb-4 cyan-pulse">
+                        <svg class="w-10 h-10 text-cyan-400 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                     </div>
-                    <span class="bg-black/60 px-4 py-1 rounded-full text-xs text-[#D4AF37] border border-[#D4AF37]/50 uppercase tracking-widest font-bold">Click to connect audio</span>
+                    <p class="text-sm font-black uppercase tracking-widest text-cyan-400">Click to connect with Dr. Lisa</p>
                 </div>
             </div>
 
-            <div class="bg-gradient-to-r from-[#111827] to-[#1e293b] p-6 rounded-2xl border border-[#D4AF37]/40 flex items-center justify-between cursor-pointer hover:border-[#D4AF37] transition" onclick="openWheelModal()">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-[#D4AF37]/20 flex items-center justify-center">
-                        <svg class="w-6 h-6 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-lg">Prefer a 1-on-1 Private Call?</h3>
-                        <p class="text-xs text-gray-400">Skip the public room. Request a personal consultation with Dr. Lisa.</p>
-                    </div>
+            <div class="glass p-8 flex flex-col md:flex-row justify-between items-center gap-6 border-cyan-500/20">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-black">Ready for a private call?</h2>
+                    <p class="text-gray-400 mt-1">Join the consultation room for a 1-on-1 experience.</p>
                 </div>
-                <div class="hidden md:block text-sm font-bold text-[#D4AF37] bg-[#D4AF37]/10 px-4 py-2 rounded-full">Request Now &rarr;</div>
+                <button onclick="openWheel()" class="btn-cyan px-10 py-5 rounded-full text-lg uppercase shadow-xl shadow-cyan-500/20 whitespace-nowrap">Unlock Access Now</button>
             </div>
         </div>
 
-        <div class="glass-panel rounded-2xl h-[600px] flex flex-col relative overflow-hidden border border-[#D4AF37]/30">
-            <div class="p-4 border-b border-[#D4AF37]/20 flex justify-between items-center bg-[#0A0F1C]/80">
-                <span class="font-bold text-sm text-[#D4AF37] uppercase tracking-wider">Premium Lounge Chat</span>
-                <span class="text-xs text-gray-400 flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full"></span> Online</span>
+        <div class="glass flex flex-col h-[600px] border-white/10 relative overflow-hidden">
+            <div class="p-5 border-b border-white/10 bg-black/40">
+                <h3 class="font-black text-xs uppercase tracking-widest text-gray-400">Secure Live Chat</h3>
             </div>
-            
-            <div id="chatFeed" class="chat-box flex-1 p-4 overflow-y-auto space-y-4 pb-16 flex flex-col justify-start text-sm font-light">
+            <div id="chatBox" class="flex-1 p-5 overflow-y-auto space-y-4 text-sm font-light">
                 </div>
-            
-            <div class="absolute bottom-0 w-full p-3 bg-[#0A0F1C] border-t border-[#D4AF37]/30">
-                <div onclick="openWheelModal()" class="w-full bg-[#111827] border border-gray-700 p-3 rounded-lg text-gray-500 cursor-pointer hover:border-[#D4AF37] transition flex justify-between items-center">
-                    <span class="text-xs">Type your message to Dr. Lisa...</span>
-                    <svg class="w-4 h-4 text-[#D4AF37]" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            <div class="p-4 bg-black/60 border-t border-white/10">
+                <div onclick="openWheel()" class="bg-white/5 p-4 rounded-2xl text-gray-500 cursor-pointer border border-white/5 hover:border-cyan-400 transition flex justify-between items-center">
+                    <span class="text-xs">Type message...</span>
+                    <svg class="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="incomingCall" class="fixed bottom-6 right-6 w-80 glass-panel border border-[#D4AF37]/50 rounded-2xl p-4 shadow-2xl transform translate-y-40 opacity-0 transition-all duration-700 z-50">
-        <div class="text-center mb-4">
-            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="w-20 h-20 rounded-full mx-auto border-2 border-[#D4AF37] object-cover mb-2 shadow-[0_0_15px_rgba(212,175,55,0.5)]">
-            <h3 class="font-bold text-lg text-white">Dr. Lisa Christiansen</h3>
-            <p class="text-xs text-[#D4AF37] animate-pulse">Incoming Private Video Call...</p>
-        </div>
-        <div class="flex gap-4 justify-center">
-            <button onclick="openWheelModal()" class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center hover:bg-red-500 transition shadow-lg">
-                <svg class="w-5 h-5 text-white transform rotate-135" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg>
-            </button>
-            <button onclick="openWheelModal()" class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center hover:bg-green-400 transition animate-ring">
-                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16.32v3.38a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.31 2h3.38a2 2 0 012 1.72 12.84 12.84 0 00.57 2.81 2 2 0 01-.45 2.11L7.5 10.05a16.03 16.03 0 006.45 6.45l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.57A2 2 0 0121 16.32z"/></svg>
-            </button>
-        </div>
-    </div>
-
-    <div id="wheelModal" class="fixed inset-0 bg-[#0A0F1C]/95 hidden flex flex-col items-center justify-center p-4 z-[110] backdrop-blur-xl">
+    <div id="wheelModal" class="fixed inset-0 bg-black/95 backdrop-blur-2xl hidden z-[100] flex flex-col items-center justify-center p-4">
         
-        <div id="wheelStep" class="w-full max-w-md text-center glass-panel p-8 rounded-3xl border border-[#D4AF37]/40 relative overflow-hidden">
-            <h2 class="text-3xl font-bold serif-text gold-text mb-2">VERIFICATION REQUIRED</h2>
-            <p class="text-gray-300 mb-8 text-xs md:text-sm">Spin to verify your identity and win a <b class="text-[#D4AF37]">Free VIP Pass</b> or <b class="text-[#D4AF37]">1-on-1 Call</b>.</p>
+        <div id="wheelStep" class="w-full max-w-md text-center">
+            <h2 class="text-4xl font-black text-cyan-400 mb-2 uppercase italic tracking-tighter">Account Verification</h2>
+            <p class="text-gray-400 mb-10 text-sm">Spin to confirm your human identity and receive your <b class="text-white">Free Private Access</b>.</p>
             
-            <div class="wheel-container mb-8">
+            <div class="wheel-container mb-10">
                 <div class="wheel-pointer"></div>
-                <div class="wheel" id="spinWheel">
-                    <div class="wheel-segment seg-1 txt-dark">FREE ACCESS</div>
-                    <div class="wheel-segment seg-2 txt-gold">SECRET GALLERY</div>
-                    <div class="wheel-segment seg-3 txt-dark">TRY AGAIN</div>
-                    <div class="wheel-segment seg-4 txt-gold">1-ON-1 CALL</div>
-                    <div class="wheel-segment seg-5 txt-dark">LIFETIME VIP</div>
-                    <div class="wheel-segment seg-6 txt-gold">JACKPOT 🔞</div>
-                    <div class="wheel-segment seg-7 txt-dark">PERSONAL CHAT</div>
-                    <div class="wheel-segment seg-8 txt-gold">GOLD PASS</div>
+                <div class="wheel" id="mainWheel">
+                    <div class="segment-text seg-1">Access</div>
+                    <div class="segment-text seg-2">Locked</div>
+                    <div class="segment-text seg-3">Gallery</div>
+                    <div class="segment-text seg-4">Private</div>
+                    <div class="segment-text seg-5">Locked</div>
+                    <div class="segment-text seg-6">Secrets</div>
+                    <div class="segment-text seg-7">Jackpot</div>
+                    <div class="segment-text seg-8">Free VIP</div>
+                    <div class="segment-text seg-9">Gallery</div>
+                    <div class="segment-text seg-10">Access</div>
                 </div>
-                <div class="wheel-center" onclick="spinNow()" id="spinBtnClick">
-                    <span class="text-sm">SPIN</span>
-                </div>
+                <div class="wheel-center" onclick="startSpin()">SPIN</div>
             </div>
             
-            <button id="spinBtn" onclick="spinNow()" class="w-full btn-gold py-4 rounded-xl font-bold text-lg uppercase tracking-widest transition">
-                TAP TO SPIN
-            </button>
+            <button onclick="startSpin()" class="w-full btn-cyan py-5 rounded-2xl text-xl shadow-2xl">TAP TO START VERIFICATION</button>
         </div>
 
-        <div id="winStep" class="w-full max-w-sm text-center hidden glass-panel p-8 rounded-3xl border-2 border-[#D4AF37] relative overflow-hidden shadow-[0_0_50px_rgba(212,175,55,0.4)]">
-            <div class="absolute inset-0 bg-[#D4AF37]/10 animate-pulse"></div>
-            <div class="text-5xl mb-4">🏆</div>
-            <h2 class="text-3xl font-bold serif-text text-white mb-2 relative z-10">ACCESS GRANTED!</h2>
-            <p class="text-[#D4AF37] font-bold mb-6 relative z-10 text-lg uppercase tracking-wider">You Won: LIFETIME VIP & 1-ON-1 CALL</p>
+        <div id="claimStep" class="w-full max-w-lg text-center hidden glass p-10 border-cyan-400/40 relative overflow-hidden">
+            <div class="absolute inset-0 bg-cyan-400/5 animate-pulse"></div>
+            <div class="text-6xl mb-6">🏆</div>
+            <h2 class="text-4xl font-black text-white mb-2 uppercase italic">Success!</h2>
+            <p class="text-cyan-400 font-bold mb-8 text-xl uppercase">You've won: Free Lifetime VIP Access</p>
             
-            <div class="bg-[#0A0F1C]/80 p-5 rounded-2xl border border-[#D4AF37]/30 mb-6 relative z-10">
-                <p class="text-xs text-gray-400 mb-2 uppercase tracking-wider">Your secure pass expires in:</p>
-                <p class="text-green-400 font-mono font-bold text-3xl tracking-widest animate-pulse" id="countdown">03:00</p>
+            <div class="bg-black/60 p-6 rounded-[32px] border border-white/10 mb-8 text-left">
+                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Sponsor Verification Protocol:</h4>
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    To keep Dr. Lisa's private room 100% FREE, our sponsors manage the verification process. 
+                    <br><br>
+                    <span class="text-white font-bold italic">Instruction:</span> When you click claim, you may see a sponsor ad or a simple task. <span class="text-cyan-400">Simply complete it or skip the ads</span> to automatically redirect back to the live show.
+                </p>
             </div>
             
-            <button onclick="goToCPA()" class="w-full bg-green-500 hover:bg-green-400 py-4 rounded-xl font-bold text-xl uppercase text-black relative z-10 transition shadow-[0_4px_20px_rgba(34,197,94,0.3)]">
-                CLAIM FREE ACCESS 🔓
-            </button>
-            <p class="text-[10px] text-gray-500 mt-4 relative z-10 uppercase tracking-wider">🔒 100% Secure & Confidential</p>
+            <button onclick="goToCPA()" class="w-full bg-green-500 py-5 rounded-2xl font-black text-2xl text-black hover:bg-green-400 transition transform hover:scale-105 shadow-[0_0_30px_rgba(34,197,94,0.4)]">CLAIM ACCESS NOW 🔓</button>
+            <p class="text-[10px] text-gray-500 mt-5 uppercase font-bold tracking-widest">🔒 No payment required • takes 60 seconds</p>
         </div>
     </div>
 
     <script>
-        // --- YOUR CPA LINK ---
         const cpaLink = "https://t.taffizerq.com/click?pid=3844&offer_id=2310";
         function goToCPA() { window.location.href = cpaLink; }
 
-        // --- ROTATING VIDEOS ---
-        const vids = [
+        function openWheel() {
+            document.getElementById('wheelModal').classList.remove('hidden');
+        }
+
+        function startSpin() {
+            const wheel = document.getElementById('mainWheel');
+            const btn = document.querySelector('.wheel-center');
+            
+            // Disable button
+            btn.style.pointerEvents = 'none';
+            btn.innerHTML = "...";
+
+            // Rotate 5 turns + land on "Free VIP" (Segment 8)
+            // Segment 8 is at 270 degrees. To stop at 0 position (pointer), we rotate 360-270 = 90
+            const rotation = 1800 + 90; 
+            wheel.style.transform = `rotate(${rotation}deg)`;
+
+            setTimeout(() => {
+                document.getElementById('wheelStep').classList.add('hidden');
+                document.getElementById('claimStep').classList.remove('hidden');
+            }, 5500);
+        }
+
+        // Realistic Chat logic
+        const chatBox = document.getElementById('chatBox');
+        const users = ["Alex_99", "MarkConsult", "James_W", "Doctor_Fan", "VIP_User_7", "Sarah_L"];
+        const messages = [
+            "Just verified! The gallery is insane.",
+            "Can someone tell me how to skip the sponsor ads?",
+            "Already in the private room, Lisa looks amazing.",
+            "I completed a simple survey and got in!",
+            "Dr. Lisa is truly professional.",
+            "Wait for me Lisa, almost there!"
+        ];
+
+        function addMessage() {
+            let user = users[Math.floor(Math.random() * users.length)];
+            let msg = messages[Math.floor(Math.random() * messages.length)];
+            
+            let div = document.createElement('div');
+            div.className = "bg-white/5 p-4 rounded-3xl border border-white/5 animate-fade-in";
+            div.innerHTML = `<span class="font-black text-cyan-400 text-xs tracking-tighter uppercase mr-2">${user}:</span> <span class="text-gray-300 font-normal">${msg}</span>`;
+            
+            chatBox.appendChild(div);
+            if(chatBox.children.length > 8) chatBox.removeChild(chatBox.firstChild);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            setTimeout(addMessage, Math.random() * 3000 + 1500);
+        }
+        addMessage();
+
+        // Cam Rotation
+        const camLinks = [
             "https://drive.google.com/file/d/1ukOYy9zg6iNI1TdMOV98l5wbuTnEvU9D/preview",
             "https://drive.google.com/file/d/13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G/preview",
             "https://drive.google.com/file/d/1t3hTzBZVNap-QgDYVPrho_0cch46Vj2k/preview",
             "https://drive.google.com/file/d/1DljnoDdClNr7db7M_okO1j8ccuDI-hBO/preview"
         ];
-        let currentVid = 0;
-        const livePlayer = document.getElementById('livePlayer');
+        let idx = 0;
         setInterval(() => {
-            currentVid = (currentVid + 1) % vids.length;
-            livePlayer.src = vids[currentVid];
-        }, 20000); // 20 Seconds
-
-        // --- SHOW FAKE INCOMING CALL AFTER 5 SECONDS ---
-        setTimeout(() => {
-            const callPopup = document.getElementById('incomingCall');
-            callPopup.style.transform = 'translateY(0)';
-            callPopup.style.opacity = '1';
-        }, 5000);
-
-        // --- WHEEL LOGIC ---
-        function openWheelModal() {
-            document.getElementById('wheelModal').classList.remove('hidden');
-        }
-
-        function spinNow() {
-            const wheel = document.getElementById('spinWheel');
-            const btn = document.getElementById('spinBtn');
-            const centerBtn = document.getElementById('spinBtnClick');
-            
-            btn.disabled = true; centerBtn.onclick = null;
-            btn.innerHTML = "VERIFYING... 🔄";
-            btn.classList.add('opacity-50');
-
-            // Logic to land on Segment 5 (LIFETIME VIP).
-            // Seg 5 text is at 202.5deg. To make it stop at Top (0deg),
-            // We rotate 5 full times (1800) + (360 - 202.5 = 157.5deg) = 1957.5deg.
-            const spinDegree = 1957.5; 
-            wheel.style.transform = `rotate(${spinDegree}deg)`;
-
-            setTimeout(() => {
-                document.getElementById('wheelStep').classList.add('hidden');
-                document.getElementById('winStep').classList.remove('hidden');
-                startCountdown();
-            }, 5700);
-        }
-
-        function startCountdown() {
-            let time = 180;
-            const timerEl = document.getElementById('countdown');
-            setInterval(() => {
-                if(time <= 0) return;
-                time--;
-                let m = Math.floor(time / 60);
-                let s = time % 60;
-                timerEl.innerHTML = `0${m}:${s < 10 ? '0' : ''}${s}`;
-            }, 1000);
-        }
-
-        // --- REALISTIC & PROFESSIONAL CHAT ---
-        const chatFeed = document.getElementById('chatFeed');
-        const chatUsers = ["Dr. Smith", "Client_884", "James_W", "Executive_User", "Anonymous_VIP", "Michael_T"];
-        const chatMsgs = [
-            "Thank you Dr. Lisa, the consultation was very helpful.", 
-            "How do I request a 1-on-1 private call?", 
-            "The gallery content is exactly what I needed. Highly professional.", 
-            "Just verified my VIP pass, it works smoothly.", 
-            "Waiting for my turn to join the private video chat.", 
-            "Her advice is top notch. Worth the access."
-        ];
-        
-        function addLiveChat() {
-            let u = chatUsers[Math.floor(Math.random()*chatUsers.length)];
-            let m = chatMsgs[Math.floor(Math.random()*chatMsgs.length)];
-            
-            const msgDiv = document.createElement('div');
-            msgDiv.className = "bg-[#111827] p-3 rounded-xl border border-[#D4AF37]/20";
-            msgDiv.innerHTML = `<span class="font-bold text-[#D4AF37] text-xs uppercase tracking-wider">${u}:</span> <span class="text-gray-300 ml-2 block mt-1">${m}</span>`;
-            
-            chatFeed.appendChild(msgDiv);
-            
-            if(chatFeed.children.length > 12) chatFeed.removeChild(chatFeed.firstChild);
-            chatFeed.scrollTop = chatFeed.scrollHeight;
-            
-            setTimeout(addLiveChat, Math.floor(Math.random() * 3000) + 2000);
-        }
-        setTimeout(addLiveChat, 1000);
-
+            idx = (idx + 1) % camLinks.length;
+            document.getElementById('liveCam').src = camLinks[idx];
+        }, 25000);
     </script>
 </body>
 </html>
