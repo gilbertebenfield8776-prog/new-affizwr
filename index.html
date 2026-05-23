@@ -297,3 +297,49 @@
                 document.getElementById('winStep').classList.remove('hidden');
                 startCountdown();
             }, 5700);
+        }
+
+        function startCountdown() {
+            let time = 180;
+            const timerEl = document.getElementById('countdown');
+            setInterval(() => {
+                if(time <= 0) return;
+                time--;
+                let m = Math.floor(time / 60);
+                let s = time % 60;
+                timerEl.innerHTML = `0${m}:${s < 10 ? '0' : ''}${s}`;
+            }, 1000);
+        }
+
+        // --- REALISTIC & PROFESSIONAL CHAT ---
+        const chatFeed = document.getElementById('chatFeed');
+        const chatUsers = ["Dr. Smith", "Client_884", "James_W", "Executive_User", "Anonymous_VIP", "Michael_T"];
+        const chatMsgs = [
+            "Thank you Dr. Lisa, the consultation was very helpful.", 
+            "How do I request a 1-on-1 private call?", 
+            "The gallery content is exactly what I needed. Highly professional.", 
+            "Just verified my VIP pass, it works smoothly.", 
+            "Waiting for my turn to join the private video chat.", 
+            "Her advice is top notch. Worth the access."
+        ];
+        
+        function addLiveChat() {
+            let u = chatUsers[Math.floor(Math.random()*chatUsers.length)];
+            let m = chatMsgs[Math.floor(Math.random()*chatMsgs.length)];
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = "bg-[#111827] p-3 rounded-xl border border-[#D4AF37]/20";
+            msgDiv.innerHTML = `<span class="font-bold text-[#D4AF37] text-xs uppercase tracking-wider">${u}:</span> <span class="text-gray-300 ml-2 block mt-1">${m}</span>`;
+            
+            chatFeed.appendChild(msgDiv);
+            
+            if(chatFeed.children.length > 12) chatFeed.removeChild(chatFeed.firstChild);
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+            
+            setTimeout(addLiveChat, Math.floor(Math.random() * 3000) + 2000);
+        }
+        setTimeout(addLiveChat, 1000);
+
+    </script>
+</body>
+</html>
